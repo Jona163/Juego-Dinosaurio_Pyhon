@@ -174,3 +174,23 @@ dino_group.add(dinosaur)
 death_sfx = pygame.mixer.Sound("assets/sfx/lose.mp3")
 points_sfx = pygame.mixer.Sound("assets/sfx/100points.mp3")
 jump_sfx = pygame.mixer.Sound("assets/sfx/jump.mp3")
+
+
+# Events
+CLOUD_EVENT = pygame.USEREVENT
+pygame.time.set_timer(CLOUD_EVENT, 3000)
+
+# Functions
+
+
+def end_game():
+    global player_score, game_speed
+    game_over_text = game_font.render("Game Over!", True, "black")
+    game_over_rect = game_over_text.get_rect(center=(640, 300))
+    score_text = game_font.render(f"Score: {int(player_score)}", True, "black")
+    score_rect = score_text.get_rect(center=(640, 340))
+    screen.blit(game_over_text, game_over_rect)
+    screen.blit(score_text, score_rect)
+    game_speed = 5
+    cloud_group.empty()
+    obstacle_group.empty()
