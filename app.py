@@ -250,3 +250,34 @@ while True:
                 obstacle_group.add(new_obstacle)
                 obstacle_timer = pygame.time.get_ticks()
                 obstacle_spawn = False
+
+
+
+        player_score += 0.1
+        player_score_surface = game_font.render(
+            str(int(player_score)), True, ("black"))
+        screen.blit(player_score_surface, (1150, 10))
+
+        cloud_group.update()
+        cloud_group.draw(screen)
+
+        ptero_group.update()
+        ptero_group.draw(screen)
+
+        dino_group.update()
+        dino_group.draw(screen)
+
+        obstacle_group.update()
+        obstacle_group.draw(screen)
+
+        ground_x -= game_speed
+
+        screen.blit(ground, (ground_x, 360))
+        screen.blit(ground, (ground_x + 1280, 360))
+
+        if ground_x <= -1280:
+            ground_x = 0
+
+    clock.tick(120)
+    pygame.display.update()
+
