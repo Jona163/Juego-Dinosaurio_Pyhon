@@ -219,3 +219,34 @@ while True:
                     game_over = False
                     game_speed = 5
                     player_score = 0
+
+
+    screen.fill("white")
+
+    # Collisions
+    if pygame.sprite.spritecollide(dino_group.sprite, obstacle_group, False):
+        game_over = True
+        death_sfx.play()
+    if game_over:
+        end_game()
+
+    if not game_over:
+        game_speed += 0.0025
+        if round(player_score, 1) % 100 == 0 and int(player_score) > 0:
+            points_sfx.play()
+
+        if pygame.time.get_ticks() - obstacle_timer >= obstacle_cooldown:
+            obstacle_spawn = True
+
+        if obstacle_spawn:
+            obstacle_random = random.randint(1, 50)
+            if obstacle_random in range(1, 7):
+                new_obstacle = Cactus(1280, 340)
+                obstacle_group.add(new_obstacle)
+                obstacle_timer = pygame.time.get_ticks()
+                obstacle_spawn = False
+            elif obstacle_random in range(7, 10):
+                new_obstacle = Ptero()
+                obstacle_group.add(new_obstacle)
+                obstacle_timer = pygame.time.get_ticks()
+                obstacle_spawn = False
