@@ -194,3 +194,28 @@ def end_game():
     game_speed = 5
     cloud_group.empty()
     obstacle_group.empty()
+
+
+
+while True:
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_DOWN]:
+        dinosaur.duck()
+    else:
+        if dinosaur.ducking:
+            dinosaur.unduck()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == CLOUD_EVENT:
+            current_cloud_y = random.randint(50, 300)
+            current_cloud = Cloud(cloud, 1380, current_cloud_y)
+            cloud_group.add(current_cloud)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
+                dinosaur.jump()
+                if game_over:
+                    game_over = False
+                    game_speed = 5
+                    player_score = 0
