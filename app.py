@@ -2,7 +2,6 @@
 # Fecha: 29 Septiembre 2024
 # Descripción: Código game-dino.
 # GitHub: https://github.com/Jona163
-
 import pygame
 import sys
 import random
@@ -27,7 +26,6 @@ class Cloud(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.x -= 1
-
 
 
 class Dino(pygame.sprite.Sprite):
@@ -60,7 +58,6 @@ class Dino(pygame.sprite.Sprite):
         if self.rect.centery >= 360:
             while self.rect.centery - self.velocity > 40:
                 self.rect.centery -= 1
-
 
     def duck(self):
         self.ducking = True
@@ -123,7 +120,6 @@ class Ptero(pygame.sprite.Sprite):
         self.image = self.sprites[self.current_image]
         self.rect = self.image.get_rect(center=(self.x_pos, self.y_pos))
 
-
     def update(self):
         self.animate()
         self.x_pos -= game_speed
@@ -134,8 +130,6 @@ class Ptero(pygame.sprite.Sprite):
         if self.current_image >= 2:
             self.current_image = 0
         self.image = self.sprites[int(self.current_image)]
-
-
 
 # Variables
 
@@ -157,8 +151,6 @@ ground_rect = ground.get_rect(center=(640, 400))
 cloud = pygame.image.load("assets/cloud.png")
 cloud = pygame.transform.scale(cloud, (200, 80))
 
-
-
 # Groups
 
 cloud_group = pygame.sprite.Group()
@@ -174,7 +166,6 @@ dino_group.add(dinosaur)
 death_sfx = pygame.mixer.Sound("assets/sfx/lose.mp3")
 points_sfx = pygame.mixer.Sound("assets/sfx/100points.mp3")
 jump_sfx = pygame.mixer.Sound("assets/sfx/jump.mp3")
-
 
 # Events
 CLOUD_EVENT = pygame.USEREVENT
@@ -194,7 +185,6 @@ def end_game():
     game_speed = 5
     cloud_group.empty()
     obstacle_group.empty()
-
 
 
 while True:
@@ -219,7 +209,6 @@ while True:
                     game_over = False
                     game_speed = 5
                     player_score = 0
-
 
     screen.fill("white")
 
@@ -251,8 +240,6 @@ while True:
                 obstacle_timer = pygame.time.get_ticks()
                 obstacle_spawn = False
 
-
-
         player_score += 0.1
         player_score_surface = game_font.render(
             str(int(player_score)), True, ("black"))
@@ -280,4 +267,3 @@ while True:
 
     clock.tick(120)
     pygame.display.update()
-
