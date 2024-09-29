@@ -122,3 +122,16 @@ class Ptero(pygame.sprite.Sprite):
         self.current_image = 0
         self.image = self.sprites[self.current_image]
         self.rect = self.image.get_rect(center=(self.x_pos, self.y_pos))
+
+
+    def update(self):
+        self.animate()
+        self.x_pos -= game_speed
+        self.rect = self.image.get_rect(center=(self.x_pos, self.y_pos))
+
+    def animate(self):
+        self.current_image += 0.025
+        if self.current_image >= 2:
+            self.current_image = 0
+        self.image = self.sprites[int(self.current_image)]
+
