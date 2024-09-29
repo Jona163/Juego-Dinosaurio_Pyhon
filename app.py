@@ -157,3 +157,20 @@ ground_rect = ground.get_rect(center=(640, 400))
 cloud = pygame.image.load("assets/cloud.png")
 cloud = pygame.transform.scale(cloud, (200, 80))
 
+
+
+# Groups
+
+cloud_group = pygame.sprite.Group()
+obstacle_group = pygame.sprite.Group()
+dino_group = pygame.sprite.GroupSingle()
+ptero_group = pygame.sprite.Group()
+
+# Objects
+dinosaur = Dino(50, 360)
+dino_group.add(dinosaur)
+
+# Sounds
+death_sfx = pygame.mixer.Sound("assets/sfx/lose.mp3")
+points_sfx = pygame.mixer.Sound("assets/sfx/100points.mp3")
+jump_sfx = pygame.mixer.Sound("assets/sfx/jump.mp3")
